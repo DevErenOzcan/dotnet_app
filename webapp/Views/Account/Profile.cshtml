@@ -1,0 +1,22 @@
+@model webapp.Models.User
+
+<h2>Kullanıcı Profili</h2>
+<div class="card" style="width: 18rem;">
+    @if(!string.IsNullOrEmpty(Model.ProfilePicturePath))
+    {
+        <img src="@Model.ProfilePicturePath" class="card-img-top" alt="Profil Resmi" style="max-height: 250px; object-fit: cover;">
+    }
+    else
+    {
+        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Resim Yok">
+    }
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">
+            <strong>Kullanıcı Adı:</strong> @Model.Username <br/>
+            <strong>Email:</strong> @Model.Email
+        </p>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Profili Düzenle</a>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Ana Sayfa</a>
+    </div>
+</div>

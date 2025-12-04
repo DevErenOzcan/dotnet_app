@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -23,22 +24,24 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Account" asp-action="Profile" asp-route-id="@User.FindFirst(ClaimTypes.NameIdentifier)?.Value">Profilim</a>
+                        </li>
+                    }
                 </ul>
-                @{
-                    if (User.Identity.IsAuthenticated) {
-                        <form method="post" asp-controller="Account" asp-action="Logout">
-                            <button type="submit">Logout</button>
-                        </form>
-                    }
-                    else {
-                        <form method="get" asp-controller="Account" asp-action="Login">
-                            <button type="submit">Login</button>
-                        </form>
-                    }
+                <div class="navbar-nav">
+                @if (User.Identity.IsAuthenticated) {
+                    <form method="post" asp-controller="Account" asp-action="Logout" class="form-inline">
+                        <button type="submit" class="btn btn-link nav-link text-dark">Logout (@User.Identity.Name)</button>
+                    </form>
                 }
+                else {
+                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
+                }
+                </div>
             </div>
         </div>
     </nav>

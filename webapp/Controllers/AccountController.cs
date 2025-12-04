@@ -1,8 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using webapp.Data;
@@ -14,12 +12,13 @@ public class AccountController : Controller
 {
     private readonly IConfiguration _configuration;
     private readonly MyDbContext _context;
-    
+    private readonly IWebHostEnvironment _hostEnvironment;
 
-    public AccountController(MyDbContext context, IConfiguration configuration)
+    public AccountController(MyDbContext context, IConfiguration configuration, IWebHostEnvironment hostEnvironment)
     {
         _context = context;
         _configuration = configuration;
+        _hostEnvironment = hostEnvironment;
     }
 
     [HttpGet]
@@ -29,23 +28,34 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Register(User model)
+    public async Task<IActionResult> Register(User model, IFormFile? profileImage)
     {
         if (ModelState.IsValid)
         {
-            var user = new User
+            // Profil Resmi Yükleme
+            if (profileImage != null)
             {
-                Username = model.Username,
-                Email = model.Email,
-                Password = BCrypt.Net.BCrypt.HashPassword(model.Password)
-            };
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "uploads");
+                if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
 
-            _context.Users.Add(user);
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" + profileImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await profileImage.CopyToAsync(fileStream);
+                }
+                model.ProfilePicturePath = "/uploads/" + uniqueFileName;
+            }
+
+            // Şifre Hashleme
+            model.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+
+            _context.Users.Add(model);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Login");
         }
-
         return View(model);
     }
     
@@ -56,47 +66,94 @@ public class AccountController : Controller
     }
     
     [HttpPost]
-    public Task<IActionResult> Login(User model)
+    public IActionResult Login(User model)
     {
-        if (ModelState.IsValid)
+        var user = _context.Users.SingleOrDefault(u => u.Username == model.Username);
+    
+        if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
         {
-            var user = _context.Users.SingleOrDefault(u => u.Username == model.Username);
-        
-            if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
-            {
-                
-                // Kullanıcı doğrulandı, session veya token eklenebilir
-                var tokenString = generateToken(user);
-                Response.Cookies.Append("token", tokenString);
-                return Task.FromResult<IActionResult>(RedirectToAction("Home", "Home"));
-            }
-
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            var tokenString = GenerateToken(user);
+            
+            // Token'ı cookie'ye ekle
+            Response.Cookies.Append("token", tokenString);
+            
+            // Basit bir yönlendirme: Giriş başarılıysa Profile git
+            return RedirectToAction("Profile", new { id = user.Id });
         }
 
-        return Task.FromResult<IActionResult>(View(model));
+        ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya şifre.");
+        return View(model);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Profile(int id)
+    {
+        var user = await _context.Users.FindAsync(id);
+        if (user == null) return NotFound();
+        return View(user);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var user = await _context.Users.FindAsync(id);
+        if (user == null) return NotFound();
+        return View(user);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(int id, User model, IFormFile? profileImage)
+    {
+        var userToUpdate = await _context.Users.FindAsync(id);
+        if (userToUpdate == null) return NotFound();
+
+        userToUpdate.Name = model.Name;
+        userToUpdate.Username = model.Username;
+        userToUpdate.Email = model.Email;
+
+        if (profileImage != null)
+        {
+            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "uploads");
+            if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
+            
+            string uniqueFileName = Guid.NewGuid().ToString() + "_" + profileImage.FileName;
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await profileImage.CopyToAsync(fileStream);
+            }
+            userToUpdate.ProfilePicturePath = "/uploads/" + uniqueFileName;
+        }
+
+        if (!string.IsNullOrEmpty(model.Password))
+        {
+             userToUpdate.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+        }
+
+        _context.Users.Update(userToUpdate);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("Profile", new { id = userToUpdate.Id });
     }
     
     [HttpPost]
-    public Task<IActionResult> Logout()
+    public IActionResult Logout()
     {
-        // Çerezleri sil
         Response.Cookies.Delete("token");
-        return Task.FromResult<IActionResult>(RedirectToAction("Index", "Home"));
+        return RedirectToAction("Index", "Home");
     }
 
-    
-
-    private String generateToken(User user)
+    private string GenerateToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+        var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]!);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Username)
             }),
             Expires = DateTime.UtcNow.AddHours(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

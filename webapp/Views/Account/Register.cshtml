@@ -1,14 +1,26 @@
-@model User
+@model webapp.Models.User
 
-<form method="post">
-    <label for="Username">Username:</label>
-    <input type="text" id="Username" name="Username" required />
-    
-    <label for="Email">Email:</label>
-    <input type="email" id="Email" name="Email" required />
-
-    <label for="Password">Password:</label>
-    <input type="password" id="Password" name="Password" required />
-
-    <button type="submit">Register</button>
+<h2>Kayıt Ol</h2>
+<form asp-action="Register" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label class="form-label">İsim Soyisim</label>
+        <input asp-for="Name" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Kullanıcı Adı</label>
+        <input asp-for="Username" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input asp-for="Email" type="email" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Şifre</label>
+        <input asp-for="Password" type="password" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Profil Resmi</label>
+        <input type="file" name="profileImage" class="form-control" accept="image/*" />
+    </div>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
 </form>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/eren/RiderProjects/webapp/webapp/webapp.csproj": {}
+    "/home/eren/RiderProjects/dotnet_app/webapp/webapp.csproj": {}
   },
   "projects": {
-    "/home/eren/RiderProjects/webapp/webapp/webapp.csproj": {
+    "/home/eren/RiderProjects/dotnet_app/webapp/webapp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/eren/RiderProjects/webapp/webapp/webapp.csproj",
+        "projectUniqueName": "/home/eren/RiderProjects/dotnet_app/webapp/webapp.csproj",
         "projectName": "webapp",
-        "projectPath": "/home/eren/RiderProjects/webapp/webapp/webapp.csproj",
+        "projectPath": "/home/eren/RiderProjects/dotnet_app/webapp/webapp.csproj",
         "packagesPath": "/home/eren/.nuget/packages/",
-        "outputPath": "/home/eren/RiderProjects/webapp/webapp/obj/",
+        "outputPath": "/home/eren/RiderProjects/dotnet_app/webapp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/eren/.nuget/NuGet/NuGet.Config"
@@ -20,7 +20,6 @@
           "net9.0"
         ],
         "sources": {
-          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -59,9 +58,9 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
-            "Pomelo.EntityFrameworkCore.MySql": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.0-preview.2.efcore.9.0.0, )"
+              "version": "[9.0.0, )"
             }
           },
           "imports": [
@@ -83,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/eren/.dotnet/sdk/9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

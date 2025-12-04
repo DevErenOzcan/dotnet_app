@@ -3,14 +3,11 @@ using webapp.Models;
 
 namespace webapp.Data;
 
-public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(options)
+public class MyDbContext : DbContext
 {
-    public DbSet<User> Users { get; set; }
-
-    // Override OnConfiguring to configure the MySQL connection
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
     {
-        optionsBuilder.UseMySql("server=localhost;database=main;user=root;password=Localpass.",
-            new MySqlServerVersion(new Version(9, 1, 0)));
     }
+
+    public DbSet<User> Users { get; set; }
 }

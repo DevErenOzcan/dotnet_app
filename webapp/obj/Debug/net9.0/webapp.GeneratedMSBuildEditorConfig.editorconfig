@@ -17,53 +17,61 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = webapp
 build_property.RootNamespace = webapp
-build_property.ProjectDir = /home/eren/RiderProjects/webapp/webapp/
+build_property.ProjectDir = /home/eren/RiderProjects/dotnet_app/webapp/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/eren/RiderProjects/webapp/webapp
+build_property.MSBuildProjectDirectory = /home/eren/RiderProjects/dotnet_app/webapp
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[/home/eren/RiderProjects/webapp/webapp/Views/Account/Login.cshtml]
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/Account/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/eren/RiderProjects/webapp/webapp/Views/Account/Register.cshtml]
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/Account/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Qcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9SZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/eren/RiderProjects/webapp/webapp/Views/Home/Home.cshtml]
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/Home/Home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Ib21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/eren/RiderProjects/webapp/webapp/Views/Home/Index.cshtml]
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/eren/RiderProjects/webapp/webapp/Views/Home/Privacy.cshtml]
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/eren/RiderProjects/webapp/webapp/Views/Shared/Error.cshtml]
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/eren/RiderProjects/webapp/webapp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/eren/RiderProjects/webapp/webapp/Views/_ViewImports.cshtml]
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/eren/RiderProjects/webapp/webapp/Views/_ViewStart.cshtml]
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/eren/RiderProjects/webapp/webapp/Views/Shared/_Layout.cshtml]
+[/home/eren/RiderProjects/dotnet_app/webapp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-zdnfl2gqr2

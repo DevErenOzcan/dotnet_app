@@ -1,0 +1,36 @@
+@model webapp.Models.User
+
+<h2>Bilgileri Düzenle</h2>
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    
+    <div class="mb-3">
+        <label class="form-label">İsim Soyisim</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Kullanıcı Adı</label>
+        <input asp-for="Username" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Yeni Şifre (Boş bırakırsanız değişmez)</label>
+        <input type="password" name="Password" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Profil Resmi Güncelle</label>
+        <input type="file" name="profileImage" class="form-control" accept="image/*" />
+        @if(!string.IsNullOrEmpty(Model.ProfilePicturePath))
+        {
+            <div class="mt-2">
+                <small>Mevcut Resim:</small><br/>
+                <img src="@Model.ProfilePicturePath" width="100" />
+            </div>
+        }
+    </div>
+    <button type="submit" class="btn btn-success">Güncelle</button>
+    <a asp-action="Profile" asp-route-id="@Model.Id" class="btn btn-secondary">İptal</a>
+</form>
