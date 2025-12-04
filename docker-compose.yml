@@ -1,6 +1,6 @@
 services:
   webapp:
-    build: .
+    image: erenozcan17/fileorbis_dotnet:latest
     ports:
       - "5000:8080"
     environment:
@@ -16,3 +16,10 @@ services:
       - SA_PASSWORD=YourStrong@Passw0rd
     ports:
       - "1433:1433"
+    # ADD THIS SECTION
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+# ADD THIS SECTION AT THE BOTTOM
+volumes:
+  mssql_data:

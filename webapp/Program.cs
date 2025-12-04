@@ -50,4 +50,27 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// -----------------------------------------------------------
+// BAŞLANGIÇ: Veritabanı Migration ve Oluşturma İşlemi
+// -----------------------------------------------------------
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<MyDbContext>();
+        // Veritabanı yoksa oluşturur, varsa eksik tabloları ekler (Migrate)
+        context.Database.Migrate();
+        Console.WriteLine("Veritabanı başarıyla oluşturuldu veya güncellendi.");
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Veritabanı başlatılırken bir hata oluştu.");
+    }
+}
+// -----------------------------------------------------------
+// BİTİŞ
+// -----------------------------------------------------------
+
 app.Run();
