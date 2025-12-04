@@ -314,7 +314,6 @@
 /home/eren/RiderProjects/dotnet_app/webapp/obj/Debug/net9.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /home/eren/RiderProjects/dotnet_app/webapp/obj/Debug/net9.0/scopedcss/bundle/webapp.styles.css
 /home/eren/RiderProjects/dotnet_app/webapp/obj/Debug/net9.0/scopedcss/projectbundle/webapp.bundle.scp.css
-/home/eren/RiderProjects/dotnet_app/webapp/obj/Debug/net9.0/compressed/c70f499s0g-oihz00qlfd.gz
 /home/eren/RiderProjects/dotnet_app/webapp/obj/Debug/net9.0/compressed/x96oruzo2r-61n19gt1b8.gz
 /home/eren/RiderProjects/dotnet_app/webapp/obj/Debug/net9.0/compressed/ba26cimz1j-fr7q2aak1r.gz
 /home/eren/RiderProjects/dotnet_app/webapp/obj/Debug/net9.0/compressed/l2pg0dzin8-um2zuui0kv.gz
@@ -416,3 +415,4 @@
 /home/eren/RiderProjects/dotnet_app/webapp/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
 /home/eren/RiderProjects/dotnet_app/webapp/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
 /home/eren/RiderProjects/dotnet_app/webapp/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
+/home/eren/RiderProjects/dotnet_app/webapp/obj/Debug/net9.0/compressed/c70f499s0g-gzeyxuu4bb.gz

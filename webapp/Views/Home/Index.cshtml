@@ -1,9 +1,51 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Anasayfa";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <h1 class="display-4">This is index page</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="bg-white rounded-3 p-5 mb-4 shadow-sm text-center">
+    <div class="py-5">
+        <i class="bi bi-stars text-warning mb-3" style="font-size: 4rem;"></i>
+        <h1 class="display-4 fw-bold text-dark">ASP.NET Core Dünyasına Hoş Geldiniz</h1>
+        <p class="col-md-8 mx-auto fs-5 text-muted mt-3">
+            Modern, hızlı ve güvenli web uygulamaları geliştirmek için tasarlanmış, güçlü bir altyapıya sahip başlangıç projeniz.
+        </p>
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mt-4">
+            <a href="https://learn.microsoft.com/aspnet/core" target="_blank" class="btn btn-primary btn-lg px-4 gap-3">
+                <i class="bi bi-book me-2"></i>Dökümantasyon
+            </a>
+            <a asp-controller="Account" asp-action="Register" class="btn btn-outline-secondary btn-lg px-4">
+                <i class="bi bi-person-plus me-2"></i>Kayıt Ol
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 py-3">
+    <div class="col-md-4">
+        <div class="card h-100 text-center p-4">
+            <div class="card-body">
+                <i class="bi bi-lightning-charge-fill text-primary display-5 mb-3"></i>
+                <h3 class="h4">Hızlı Performans</h3>
+                <p class="text-muted">En son .NET teknolojileri ile optimize edilmiş yüksek hız.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 text-center p-4">
+            <div class="card-body">
+                <i class="bi bi-shield-check-fill text-success display-5 mb-3"></i>
+                <h3 class="h4">Güvenli Yapı</h3>
+                <p class="text-muted">Yerleşik güvenlik özellikleri ve kimlik doğrulama sistemi.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 text-center p-4">
+            <div class="card-body">
+                <i class="bi bi-palette-fill text-danger display-5 mb-3"></i>
+                <h3 class="h4">Modern Tasarım</h3>
+                <p class="text-muted">Bootstrap 5 ve özel CSS ile şık ve duyarlı arayüz.</p>
+            </div>
+        </div>
+    </div>
 </div>

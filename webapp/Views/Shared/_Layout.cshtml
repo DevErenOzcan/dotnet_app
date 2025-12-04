@@ -1,62 +1,71 @@
 ﻿@using System.Security.Claims
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - webapp</title>
-    <script type="importmap"></script>
+    <title>@ViewData["Title"] - WebApp</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100 bg-light">
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">webapp</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
+                <i class="bi bi-box-seam me-2"></i>WebApp
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Menüyü aç">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a>
                     </li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Account" asp-action="Profile" asp-route-id="@User.FindFirst(ClaimTypes.NameIdentifier)?.Value">Profilim</a>
+                            <a class="nav-link" asp-controller="Account" asp-action="Profile" asp-route-id="@User.FindFirst(ClaimTypes.NameIdentifier)?.Value">Profilim</a>
                         </li>
                     }
                 </ul>
-                <div class="navbar-nav">
+                <div class="navbar-nav ms-auto">
                 @if (User.Identity.IsAuthenticated) {
-                    <form method="post" asp-controller="Account" asp-action="Logout" class="form-inline">
-                        <button type="submit" class="btn btn-link nav-link text-dark">Logout (@User.Identity.Name)</button>
+                    <form method="post" asp-controller="Account" asp-action="Logout" class="d-flex align-items-center">
+                         <span class="text-light me-3">Merhaba, <strong>@User.Identity.Name</strong></span>
+                         <button type="submit" class="btn btn-outline-light btn-sm rounded-pill px-3">
+                             <i class="bi bi-box-arrow-right me-1"></i> Çıkış
+                         </button>
                     </form>
                 }
                 else {
-                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
-                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
+                    <a class="nav-link" asp-controller="Account" asp-action="Login"><i class="bi bi-person me-1"></i> Giriş Yap</a>
+                    <a class="btn btn-light text-primary fw-semibold ms-2 rounded-pill px-4" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
                 }
                 </div>
             </div>
         </div>
     </nav>
 </header>
-<div class="container">
+
+<div class="container flex-grow-1">
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
 </div>
 
-<footer class="border-top footer text-muted">
+<footer class="footer mt-auto py-3 bg-white border-top text-center text-muted text-small">
     <div class="container">
-        &copy; 2025 - webapp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        &copy; 2025 - WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none">Gizlilik</a>
     </div>
 </footer>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
