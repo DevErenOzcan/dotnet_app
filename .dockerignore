@@ -1,0 +1,11 @@
+**/.bin/
+**/.obj/
+**/bin/
+**/obj/
+.git/
+.gitignore
+.vs/
+.vscode/
+webapp.sln.DotSettings.user
+docker-compose.yml
+docker-compose.override.yml
