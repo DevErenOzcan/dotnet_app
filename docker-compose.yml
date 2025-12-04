@@ -1,0 +1,25 @@
+services:
+  webapp:
+    image: erenozcan17/fileorbis_dotnet:latest
+    ports:
+      - "5000:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=UserDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - db
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+    ports:
+      - "1433:1433"
+    # ADD THIS SECTION
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+# ADD THIS SECTION AT THE BOTTOM
+volumes:
+  mssql_data:
